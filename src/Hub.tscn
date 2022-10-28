@@ -1,7 +1,23 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://map_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://fonts/Hack/Hack-Bold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://fonts/Hack/Hack-Regular.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 80
+font_data = ExtResource( 3 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 40
+font_data = ExtResource( 4 )
+
+[sub_resource type="Theme" id=4]
+default_font = SubResource( 3 )
 
 [node name="Hub" type="Node2D"]
 
@@ -13,3 +29,38 @@ tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 885, 414 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_right = 1920.0
+margin_bottom = 240.0
+
+[node name="VFlowContainer" type="HFlowContainer" parent="CenterContainer"]
+margin_left = 624.0
+margin_right = 1296.0
+margin_bottom = 244.0
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VFlowContainer"]
+margin_right = 672.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 0, 120 )
+
+[node name="NameLabel" type="Label" parent="CenterContainer/VFlowContainer/CenterContainer"]
+margin_top = 13.0
+margin_right = 672.0
+margin_bottom = 107.0
+theme = SubResource( 2 )
+text = "Escapebot 9000"
+
+[node name="CenterContainer2" type="CenterContainer" parent="CenterContainer/VFlowContainer"]
+margin_top = 124.0
+margin_right = 312.0
+margin_bottom = 244.0
+rect_min_size = Vector2( 0, 120 )
+
+[node name="ControlsLabel" type="Label" parent="CenterContainer/VFlowContainer/CenterContainer2"]
+margin_top = 10.0
+margin_right = 312.0
+margin_bottom = 109.0
+theme = SubResource( 4 )
+text = "WASD to move
+E to interact"
