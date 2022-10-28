@@ -1,0 +1,29 @@
+task:
+  name: CI success
+  container: {image: "busybox"}
+  depends_on:
+    - test
+
+test_task:
+  container:
+    dockerfile: ci/Dockerfile
+  install_script:
+    - make ci-setup
+  script:
+    - make test
+
+release_task:
+  only_if: $BRANCH == 'main'
+  depends_on:
+    - test
+  env:
+    BUTLER_API_KEY: ENCRYPTED[48484284067d894d128934cb4939ea043e9c2fce0bbee13241f1254aa9f5416ffc72633d9e43381b55c753bec05406f9]
+  container:
+    dockerfile: ci/Dockerfile
+  install_script:
+    - make ci-setup
+  script:
+    - make release
+    - butler push build/linux duckinator/escapebot9k:linux --userversion-file src/version.txt
+    - butler push build/windows duckinator/escapebot9k:windows --userversion-file src/version.txt
+    - butler push build/mac duckinator/escapebot9k:mac --userversion-file src/version.txt
