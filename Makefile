@@ -33,7 +33,7 @@ windows: build_info
 	${GODOT} src/project.godot ${EXPORT_FLAG} windows ../build/windows/${GAME}.exe
 
 release:
-	$(MAKE) EXPORT_FLAG=--export linux windows mac
+	$(MAKE) EXPORT_FLAG=--export linux windows #mac
 
 debug-linux:
 	$(MAKE) EXPORT_FLAG=--export-debug linux
@@ -44,7 +44,7 @@ debug-windows:
 debug-mac:
 	$(MAKE) EXPORT_FLAG=--export-debug mac
 
-debug: debug-linux debug-windows debug-mac
+debug: debug-linux debug-windows #debug-mac
 
 ci-setup:
 	test "${CIRRUS_CI}" = "true" && cp src/export_presets.cfg.cirrus-ci src/export_presets.cfg
