@@ -26,4 +26,4 @@ release_task:
     - make release
     - butler push build/linux duckinator/escapebot9k:linux --userversion-file src/version.txt
     - butler push build/windows duckinator/escapebot9k:windows --userversion-file src/version.txt
-    - butler push build/mac duckinator/escapebot9k:mac --userversion-file src/version.txt
+    #- butler push build/mac duckinator/escapebot9k:mac --userversion-file src/version.txt
