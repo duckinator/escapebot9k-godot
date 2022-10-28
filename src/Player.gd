@@ -1,7 +1,7 @@
-extends Area2D
+extends KinematicBody2D
 
 # Player movement speed, in pixels/second.
-export var speed = 400
+export var speed = 300
 # Size of the game window.
 var screen_size
 
@@ -55,6 +55,7 @@ func _process(delta):
 	else:
 		$AnimatedSprite.stop()
 	
-	position += velocity * delta
-	position.x = clamp(position.x, 0, screen_size.x)
-	position.y = clamp(position.y, 0, screen_size.y)
+	move_and_slide(velocity)
+	#position += velocity * delta
+	#position.x = clamp(position.x, 0, screen_size.x)
+	#position.y = clamp(position.y, 0, screen_size.y)
