@@ -15,14 +15,39 @@ func _process(delta):
 	# The player's movement vector.
 	var velocity = Vector2.ZERO
 	
-	if Input.is_action_pressed("ui_right"):
-		velocity.x += 1
-	if Input.is_action_pressed("ui_left"):
-		velocity.x -= 1
-	if Input.is_action_pressed("ui_down"):
-		velocity.y += 1
-	if Input.is_action_pressed("ui_up"):
-		velocity.y -= 1
+	var UP = -1
+	var DOWN = 1
+	var LEFT = -1
+	var RIGHT = 1
+	
+	if Input.is_action_pressed("ui_up") and Input.is_action_pressed("ui_right"):
+		velocity.x += RIGHT * 0.5
+		velocity.y += UP * 0.5
+		self.rotation_degrees = 45
+	elif Input.is_action_pressed("ui_up") and Input.is_action_pressed("ui_left"):
+		velocity.x += LEFT * 0.5
+		velocity.y += UP * 0.5
+		self.rotation_degrees = -45
+	elif Input.is_action_pressed("ui_down") and Input.is_action_pressed("ui_right"):
+		velocity.x += RIGHT * 0.5
+		velocity.y += DOWN * 0.5
+		self.rotation_degrees = 135
+	elif Input.is_action_pressed("ui_down") and Input.is_action_pressed("ui_left"):
+		velocity.x += LEFT * 0.5
+		velocity.y += DOWN * 0.5
+		self.rotation_degrees = -135
+	elif Input.is_action_pressed("ui_right"):
+		velocity.x += RIGHT
+		self.rotation_degrees = 90
+	elif Input.is_action_pressed("ui_left"):
+		velocity.x += LEFT
+		self.rotation_degrees = -90
+	elif Input.is_action_pressed("ui_down"):
+		velocity.y += DOWN
+		self.rotation_degrees = 180
+	elif Input.is_action_pressed("ui_up"):
+		velocity.y += UP
+		self.rotation_degrees = 0
 	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
@@ -33,11 +58,3 @@ func _process(delta):
 	position += velocity * delta
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
-	
-	if velocity.x != 0:
-		$AnimatedSprite.animation = "walk"
-		$AnimatedSprite.flip_v = false
-		$AnimatedSprite.flip_h = velocity.x < 0
-	elif velocity.y != 0:
-		$AnimatedSprite.animation = "up"
-		$AnimatedSprite.flip_v = velocity.y > 0
