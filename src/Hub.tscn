@@ -67,4 +67,28 @@ text = "WASD to move
 E to interact"
 
 [node name="MovableCrate" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1062, 283 )
+position = Vector2( 104, 580 )
+
+[node name="MovableCrate2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1178, 963 )
+
+[node name="MovableCrate3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 762, 958 )
+
+[node name="MovableCrate4" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1175, 583 )
+
+[node name="MovableCrate5" parent="." instance=ExtResource( 5 )]
+position = Vector2( 762, 611 )
+
+[node name="MovableCrate6" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1169, 244 )
+
+[node name="MovableCrate7" parent="." instance=ExtResource( 5 )]
+position = Vector2( 149, 945 )
+
+[node name="MovableCrate8" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1817, 948 )
+
+[node name="MovableCrate9" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1807, 582 )
